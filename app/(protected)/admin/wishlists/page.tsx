@@ -57,7 +57,6 @@ export default function AdminWishlistsPage() {
                 gap-4
               "
             >
-              {/* HEADER */}
               <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                 <h3 className="text-lg font-semibold text-white">
                   👤 {w.participantId.name}
@@ -71,7 +70,6 @@ export default function AdminWishlistsPage() {
                 </span>
               </div>
 
-              {/* LISTA */}
               {w.items.length === 0 ? (
                 <p className="text-gray-400 text-sm italic">
                   Brak elementów na liście

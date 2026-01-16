@@ -22,7 +22,6 @@
         "./*"
       ]
     },
-    "ignoreDeprecations": "6.0",
     "incremental": true,
     "plugins": [
       {
@@ -34,10 +33,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "lib/**/*.ts" // ⬅️ TO JEST KLUCZ
+    "lib/**/*.ts"
     ,
     ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
+    ".next/dev/types/**/*.ts",
+    "types/**/*.d.ts"
   ],
   "exclude": [
     "node_modules"

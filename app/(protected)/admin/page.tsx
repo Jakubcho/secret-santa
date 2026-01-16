@@ -64,7 +64,6 @@ export default function AdminPage() {
       🎅 Panel admina
     </h1>
 
-    {/* TWORZENIE EVENTU */}
     <div className="flex flex-col sm:flex-row gap-3 justify-center">
       <input
         placeholder="Nazwa wydarzenia"
@@ -103,7 +102,6 @@ export default function AdminPage() {
       </button>
     </div>
 
-    {/* LISTA EVENTÓW */}
     <section className="flex flex-col gap-4">
       <h2 className="text-center text-xl font-semibold text-white">
         📋 Twoje wydarzenia

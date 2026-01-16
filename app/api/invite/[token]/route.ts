@@ -1,18 +1,23 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { connectMongoose } from "@/lib/mongoose";
 import Event from "@/models/Event";
 import Participant from "@/models/Participant";
 
 export async function GET(
-  req: Request,
-  context: { params: { token: string } }
+  request: NextRequest,
+  context: { params: Promise<{ token: string }> }
 ) {
-  const { token } = context.params;
+  const { token } = await context.params;
+
   await connectMongoose();
 
   const event = await Event.findOne({ inviteToken: token });
-  if (!event)
-    return NextResponse.json({ error: "Invalid token" }, { status: 404 });
+  if (!event) {
+    return NextResponse.json(
+      { error: "Invalid token" },
+      { status: 404 }
+    );
+  }
 
   const participants = await Participant.find({
     eventId: event._id,

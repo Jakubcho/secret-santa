@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 type Participant = {
   _id:string;
   name: string;
+  assignedTo: string;
 };
 
 export default function EventClient({
@@ -77,12 +78,10 @@ export default function EventClient({
   return (
     <div className="backdrop-blur-lg bg-black/40 rounded-2xl p-8 w-full max-w-4xl shadow-2xl flex flex-col gap-8">
 
-      {/* NAGŁÓWEK */}
       <h1 className="text-center text-2xl font-semibold text-white drop-shadow">
         🎄 Wydarzenie: <span className="text-green-400">{eventName}</span>
       </h1>
 
-      {/* LINK ZAPROSZENIA */}
       {drawn && (
         <section className="flex flex-col gap-3 items-center">
           <p className="text-white font-medium">
@@ -125,14 +124,12 @@ export default function EventClient({
         </section>
       )}
 
-      {/* UCZESTNICY */}
       <section className="flex flex-col gap-4 items-center">
 
         <h2 className="text-xl font-semibold text-white">
           👥 Uczestnicy
         </h2>
 
-        {/* DODAWANIE UCZESTNIKA */}
         {!drawn && (
           <div className="flex gap-3 w-full max-w-md">
             <input
@@ -170,7 +167,6 @@ export default function EventClient({
           </div>
         )}
 
-        {/* LISTA UCZESTNIKÓW */}
         <ul className="w-full max-w-xl flex flex-col gap-2">
           {participants.map((p) => (
             <li
@@ -202,7 +198,6 @@ export default function EventClient({
           ))}
         </ul>
 
-        {/* LOSOWANIE */}
         {!drawn ? (
           <button
             onClick={draw}

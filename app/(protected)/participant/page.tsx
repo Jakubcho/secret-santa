@@ -10,9 +10,6 @@ export default function ParticipantPage() {
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  /* =========================
-     LOAD MOJA WISHLIST
-  ========================= */
   async function load() {
     const res = await fetch("/api/wishlist", { credentials: "include" });
     const data = await res.json();
@@ -22,9 +19,6 @@ export default function ParticipantPage() {
     }
   }
 
-  /* =========================
-     ZAPIS DO BAZY (JEDYNE ŹRÓDŁO PRAWDY)
-  ========================= */
   async function persist(nextItems: string[]) {
     setLoading(true);
 
@@ -44,9 +38,7 @@ export default function ParticipantPage() {
     setTimeout(() => setSaved(false), 2000);
   }
 
-  /* =========================
-     DODAJ
-  ========================= */
+
   function addItem() {
     if (!text.trim()) return;
 
@@ -55,17 +47,13 @@ export default function ParticipantPage() {
     persist(next);
   }
 
-  /* =========================
-     USUŃ (Z BAZY!)
-  ========================= */
+
   function removeItem(index: number) {
     const next = items.filter((_, i) => i !== index);
     persist(next);
   }
 
-  /* =========================
-     WISHLIST WYLOSOWANEJ OSOBY
-  ========================= */
+
   async function loadAssigned() {
     const res = await fetch("/api/wishlist/assigned", {
       credentials: "include",
@@ -92,7 +80,6 @@ export default function ParticipantPage() {
   return (
     <div className="backdrop-blur-lg bg-black/40 rounded-2xl p-8 w-full max-w-3xl shadow-2xl flex flex-col gap-10">
 
-      {/* ================= MOJA WISHLIST ================= */}
       <section className="flex flex-col gap-5">
         <h1 className="text-2xl font-semibold text-white text-center">
           🎄 Moja lista życzeń
@@ -145,7 +132,6 @@ export default function ParticipantPage() {
         )}
       </section>
 
-      {/* ================= WISHLIST WYLOSOWANEJ OSOBY ================= */}
       {assignedUser && (
         <section className="pt-6 border-t border-white/20 flex flex-col gap-4">
           <h2 className="text-xl font-semibold text-white text-center">

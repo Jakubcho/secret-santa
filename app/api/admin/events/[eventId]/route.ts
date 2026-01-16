@@ -13,8 +13,6 @@ export async function DELETE(
 ) {
   const { eventId } = await params;
 
-  console.log("DELETE EVENT:", eventId);
-
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "admin") {

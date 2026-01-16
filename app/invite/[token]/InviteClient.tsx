@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 type Participant = {
-  _id: String,
-  name: String,
+  _id: string;
+  name: string;
 };
 
 export default function InviteClient({

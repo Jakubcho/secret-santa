@@ -8,8 +8,11 @@ export default async function Page() {
   if (!session) return null;
 
   await connectMongoose();
+  if (!session?.user?.participantId) return 401;
 
-  const me = await Participant.findById(session.user.participantId);
+  const { participantId } = session.user;
+
+  const me = await Participant.findById(participantId);
 
 
   if (!me) {
