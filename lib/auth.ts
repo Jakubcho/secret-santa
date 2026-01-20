@@ -34,19 +34,30 @@ export const authOptions: NextAuthOptions = {
         return {
           id: user._id.toString(),
           email: user.email,
-          role: user.role,
-          participantId: user.participantId?.toString() ?? null,
+          role: user.role as "admin" | "user",
+          participantId: user.participantId
+            ? user.participantId.toString()
+            : null,
         };
       },
     }),
   ],
 
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+        token.participantId = user.participantId ?? null;
+      }
+      return token;
+    },
+
     async session({ session, token }) {
       if (session.user) {
         session.user.id = token.id!;
-        session.user.role = token.role; // ✅
-        session.user.participantId = token.participantId;
+        session.user.role = token.role;
+        session.user.participantId = token.participantId ?? null;
       }
       return session;
     },
