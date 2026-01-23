@@ -7,6 +7,7 @@ const ParticipantSchema = new mongoose.Schema(
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
     assignedTo: { type: mongoose.Schema.Types.ObjectId, ref: "Participant", default: null },
     wishlist: { type: [String], default: [] },
+    exclusions: [{type: mongoose.Schema.Types.ObjectId, ref: "Participant",},],
   },
   { timestamps: true }
 );
